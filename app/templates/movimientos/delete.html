@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+
+{% block title %}Crear{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 content-box">
+
+    <h5 class="mb-4 text-danger">Eliminar registro</h5>
+
+    <!-- Cliente -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Cliente</label>
+            <div class="input-search">
+                <input class="form-control" type="text"  id="txtCliente">
+                <button type="button" class="btn-search">🔍</button>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Fecha</label>
+            <div class="input-search">
+            <input class="form-control" type="date" id="txtFecha" >
+            </div>
+        </div>
+    </div>
+
+    <!-- Dirección y Teléfono -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Dirección</label>
+            <input class="form-control" type="text" id="txtDireccion">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Teléfono</label>
+            <input class="form-control" type="text" id="txtTelefono">
+        </div>
+    </div>
+
+    <!-- Referencia -->
+    <div class="row mb-4">
+        <div class="col-4">
+            <label class="form-label">Referencia</label>
+            <div class="input-search">
+                <input class="form-control" type="text" id="txtReferencia">
+                <button type="button" class="btn-search">🔍</button>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Cantidad</label>
+            <input class="form-control" type="number" id="txtCantidad">
+        </div>
+    </div>
+
+    <!-- Valor -->
+    <div class="row mb-4">
+        <div class="col-4">
+            <label class="form-label">Valor</label>
+            <input class="form-control" type="text" id="txtValorTotal">
+        </div>
+    </div>
+
+    <!-- Botón eliminar -->
+    <div class="row">
+        <div class="col-4">
+            <button type="button" class="btn btn-danger w-100">
+                Eliminar
+            </button>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

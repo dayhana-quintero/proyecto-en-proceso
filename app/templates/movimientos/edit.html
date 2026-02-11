@@ -1,0 +1,77 @@
+
+{% extends "base.html" %}
+
+{% block title %}Crear{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 content-box">
+
+    <h5 class="mb-4 text-primary">Editar registro</h5>
+
+    <!-- Cliente y Fecha -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Cliente</label>
+            <div class="input-search">
+                <input class="form-control" type="text" placeholder="Cedula">
+                <button type="button" class="btn-search">🔍</button>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Fecha</label>
+            <input class="form-control" type="date">
+        </div>
+    </div>
+
+    <!-- Dirección y Teléfono -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Dirección</label>
+            <input class="form-control" type="text" placeholder="Dirección">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Teléfono</label>
+            <input class="form-control" type="text" placeholder="Teléfono">
+        </div>
+    </div>
+
+    <!-- Referencia y Cantidad -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Referencia</label>
+            <div class="input-search">
+                <input class="form-control" type="text" placeholder="Referencia">
+                <button type="button" class="btn-search">🔍</button>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Cantidad</label>
+            <input class="form-control" type="number" placeholder="Cantidad">
+        </div>
+    </div>
+
+    <!-- Valor -->
+    <div class="row mb-4">
+        <div class="col-4">
+            <label class="form-label">Valor</label>
+            <input class="form-control" type="text" placeholder="Valor">
+        </div>
+    </div>
+
+    <!-- Botón guardar -->
+    <div class="row">
+        <div class="col-4">
+            <button type="button" class="btn btn-success w-100">
+                Guardar cambios
+            </button>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

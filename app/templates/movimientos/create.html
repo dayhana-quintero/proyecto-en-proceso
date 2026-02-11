@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Crear{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<form action=  method ="POST" action ="{{ url_for('movimientos.guardar')}}">
+<div class="container mt-4 content-box">
+
+    <!-- Tipo de movimiento -->
+    <div class="row mb-3">
+        <div class="col-3">
+            <label class="form-label">Tipo de movimiento</label>
+            <select class="form-select">
+                <option selected>Seleccione</option>
+                <option value="1">Entrada</option>
+                <option value="2">Salida</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Datos del cliente -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Cliente</label>
+            <div class="input-search">
+                 <input type="text" class="form-control" id="txtcliente">
+                <button type="button" class="btn-search">🔍</button>
+            </div>
+
+            <label class="form-label mt-2">Fecha</label>
+             <input type="date" class="form-control" id="txtfecha">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label">Dirección</label>
+             <input type="text" class="form-control" id="txtdireccion">
+
+            <label class="form-label mt-2">Teléfono</label>
+             <input type="text" class="form-control" id="txtTelefono">
+        </div>
+    </div>
+
+    <!-- Referencia y descripción -->
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label">Referencia</label>
+            <div class="input-search">
+                <input type="text" class="form-control" id="txtinsumo">
+                <button type="button" class="btn-search">🔍</button>
+            </div>
+
+            <label class="form-label mt-3">Descripción</label>
+            <textarea class="form-control" id="txtobservaciones" rows="3"></textarea>
+        </div>
+
+        <!-- Cantidad y valor -->
+        <div class="col-4">
+            <label class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="txtcantidad">
+
+            <label class="form-label mt-3">Valor Total</label>
+            <input type="text" class="form-control" id="txtprecio">
+
+             <label class="form-label mt-3">Gran Total</label>
+            <input type="text" class="form-control" id="txtGranTotal">
+
+            
+            <button type="submit" class="btn btn-primary mt-4 w-100">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="mb-4">
+    <h3>Panel de Control</h3>
+    <small class="text-muted">Resumen general del sistema</small>
+</div>
+
+<!-- Cards -->
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Insumos</h6>
+                <h3>120</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Clientes</h6>
+                <h3>58</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Proveedores</h6>
+                <h3>18</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Movimientos</h6>
+                <h3>245</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Tabla -->
+<div class="card shadow-sm">
+    <div class="card-header bg-white">
+        <strong>Últimos Movimientos</strong>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped mb-0">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026-01-20</td>
+                    <td>Entrada</td>
+                    <td>Compra de insumos</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>2026-01-21</td>
+                    <td>Salida</td>
+                    <td>Venta a cliente</td>
+                    <td>20</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
