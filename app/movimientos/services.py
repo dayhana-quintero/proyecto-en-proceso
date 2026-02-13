@@ -1,6 +1,7 @@
 from app.extensions import db #es donde esta el llamado a la base de datos 
 
 from app.movimientos.models import Movimientos # llamar el modelo que voy a trabajar 
+from app.clienteproveedor.models import ClienteProveedor # llamar el modelo que voy a trabajar
 
 def listar_movimientos():
     return Movimientos.query.order_by(Movimientos.fecha.desc()).all()
@@ -20,3 +21,7 @@ def crear_movimiento(data):
     db.session.commit()
     
     return movimiento
+
+def service_buscar_por_cedula(cedula):
+   cedula_limpia = str(cedula).strip()
+   return ClienteProveedor.query.filter_by(nit=cedula_limpia).first()

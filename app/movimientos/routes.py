@@ -5,7 +5,9 @@ from flask import (
     render_template,
     request,
     Blueprint,
-    Flask
+    Flask,
+    jsonify
+    
 )
 
 from app.movimientos.services import (
@@ -15,6 +17,12 @@ from app.movimientos.services import (
 
 from app.movimientos import movimientos_bp 
 
+from app.movimientos.services import (
+    
+    listar_movimientos,
+    crear_movimiento,
+    service_buscar_por_cedula
+)
 @movimientos_bp.route('/')
 def index():
     movimiento = listar_movimientos()
@@ -43,6 +51,22 @@ def guardar():
         
         return redirect(url_for('main.dashboard'))
     return render_template('movimientos/create.html')
+
+
+@movimientos_bp.route('movimientos/buscar_por_cedula/<cedula>')
+def buscar_por_cedula(cedula):
+    
+    cliente = service_buscar_por_cedula(cedula)
+    
+    if not cliente: 
+       return jsonify({"error": "Cliente no encontrado"}) 
+ 
+    return jsonify({ 
+        "id": cliente.id, 
+        "nombre": cliente.nombre,
+        "direccion": cliente.direccion,
+        "celular": cliente.celular
+    })
 
 @movimientos_bp.route('/edit')
 def edit():

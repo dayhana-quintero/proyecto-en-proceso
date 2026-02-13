@@ -5,75 +5,108 @@
 
 {% block content %}
 
-<form action=  method ="POST" action ="{{ url_for('movimientos.guardar')}}">
-<div class="container mt-4 content-box">
+<form action=method ="POST" action="{{ url_for('movimientos.guardar')}}">
+    <div class="container mt-4 content-box">
 
-    <!-- Tipo de movimiento -->
-    <div class="row mb-3">
-        <div class="col-3">
-            <label class="form-label">Tipo de movimiento</label>
-            <select class="form-select">
-                <option selected>Seleccione</option>
-                <option value="1">Entrada</option>
-                <option value="2">Salida</option>
-            </select>
+        <!-- Tipo de movimiento -->
+        <div class="row mb-3">
+            <div class="col-3">
+                <label class="form-label">Tipo de movimiento</label>
+                <select class="form-select">
+                    <option selected>Seleccione</option>
+                    <option value="1">Entrada</option>
+                    <option value="2">Salida</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <!-- Datos del cliente -->
-    <div class="row mb-3">
-        <div class="col-4">
-            <label class="form-label">Cliente</label>
-            <div class="input-search">
-                 <input type="text" class="form-control" id="txtcliente">
-                <button type="button" class="btn-search">🔍</button>
+        <!-- Datos del cliente -->
+        <div class="row mb-3">
+            <div class="col-4">
+                <label class="form-label">Cliente</label>
+                <div class="input-search">
+                    <input type="text" class="form-control" id="txtcliente">
+                    <button type="button" class="btn-search">🔍</button>
+                </div>
+
+                <label class="form-label mt-2">Fecha</label>
+                <input type="date" class="form-control" id="txtfecha">
             </div>
 
-            <label class="form-label mt-2">Fecha</label>
-             <input type="date" class="form-control" id="txtfecha">
+            <div class="col-4">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="txtdireccion">
+
+                <label class="form-label mt-2">Teléfono</label>
+                <input type="text" class="form-control" id="txtTelefono">
+            </div>
         </div>
 
-        <div class="col-4">
-            <label class="form-label">Dirección</label>
-             <input type="text" class="form-control" id="txtdireccion">
+        <!-- Referencia y descripción -->
+        <div class="row mb-3">
+            <div class="col-4">
+                <label class="form-label">Referencia</label>
+                <div class="input-search">
+                    <input type="text" class="form-control" id="txtinsumo">
+                    <button type="button" class="btn-search">🔍</button>
+                </div>
 
-            <label class="form-label mt-2">Teléfono</label>
-             <input type="text" class="form-control" id="txtTelefono">
-        </div>
-    </div>
-
-    <!-- Referencia y descripción -->
-    <div class="row mb-3">
-        <div class="col-4">
-            <label class="form-label">Referencia</label>
-            <div class="input-search">
-                <input type="text" class="form-control" id="txtinsumo">
-                <button type="button" class="btn-search">🔍</button>
+                <label class="form-label mt-3">Descripción</label>
+                <textarea class="form-control" id="txtobservaciones"
+                    rows="3"></textarea>
             </div>
 
-            <label class="form-label mt-3">Descripción</label>
-            <textarea class="form-control" id="txtobservaciones" rows="3"></textarea>
+            <!-- Cantidad y valor -->
+            <div class="col-4">
+                <label class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="txtcantidad">
+
+                <label class="form-label mt-3">Valor Total</label>
+                <input type="text" class="form-control" id="txtprecio">
+
+                <label class="form-label mt-3">Gran Total</label>
+                <input type="text" class="form-control" id="txtGranTotal">
+
+                <button type="submit" class="btn btn-primary mt-4 w-100">
+                    Guardar
+                </button>
+            </div>
         </div>
 
-        <!-- Cantidad y valor -->
-        <div class="col-4">
-            <label class="form-label">Cantidad</label>
-            <input type="number" class="form-control" id="txtcantidad">
-
-            <label class="form-label mt-3">Valor Total</label>
-            <input type="text" class="form-control" id="txtprecio">
-
-             <label class="form-label mt-3">Gran Total</label>
-            <input type="text" class="form-control" id="txtGranTotal">
-
-            
-            <button type="submit" class="btn btn-primary mt-4 w-100">
-                Guardar
-            </button>
-        </div>
     </div>
-
-</div>
 </form>
+
+<script> 
+document.getElementById("txtcedula").addEventListener("blur", function() { 
+    let cedula = this.value; 
+    if (!cedula) return; 
+
+    // Cambiado print por console.log
+    console.log("Buscando cédula:", cedula); 
+
+    // Uso de comillas invertidas (backticks) para que funcione el ${cedula}
+    fetch(`/movimientos/buscar_por_cedula/${cedula}`)  
+        .then(response => {
+            if (!response.ok) throw new Error("Error en la red");
+            return response.json();
+        }) 
+        .then(data => { 
+            if (data.error) { 
+                alert(data.error); 
+                document.getElementById("id_cliente").value = ""; 
+                document.getElementById("txtnombre_cliente").value = ""; 
+                return; 
+            } 
+
+            // Asegúrate de que los IDs coincidan con tu HTML
+            document.getElementById("txtnombre_cliente").value = data.nombre; 
+            document.getElementById("id_cliente").value = data.id; 
+        }) 
+        .catch(error => {
+            console.error("Error completo:", error);
+            alert("Error al procesar la solicitud");
+        }); 
+});
+</script>
 
 {% endblock %}
