@@ -1,11 +1,61 @@
 {% extends "base.html" %}
-
-{% block title %}create{% endblock %}
-{% block page_title %}Dashboard{% endblock %}
+{% block title %}Nuevo Insumo{% endblock %}
 
 {% block content %}
+<h2>Nuevo Insumo</h2>
+<form method="POST" class="card card-body bg-white shadow-sm">
+   {{ form.hidden_tag() }}
+   <div class="row">
+      <div class="col-md-6 mb-3">
+         {{ form.codigo.label }}
+         {{ form.codigo(class="form-control") }}
+      </div>
+      <div class="col-md-6 mb-3">
+         {{ form.descripcion.label }}
+         {{ form.descripcion(class="form-control") }}
+      </div>
+   </div>
 
+   <div class="row">
+      <div class="col-md-4 mb-3">
+         {{ form.lote.label }}
+         {{ form.lote(class="form-control") }}
+      </div>
 
+      <div class="col-md-4 mb-3">
+         {{ form.invima.label }}
+         {{ form.invima(class="form-control") }}
+      </div>
 
+      <div class="col-md-4 mb-3">
+         {{ form.valor.label }}
+         {{ form.valor(class="form-control") }}
+      </div>
+   </div>
 
+   <div class="row">
+      <div class="col-md-4 mb-3">
+         {{ form.fecha_vencimiento.label }}
+         {{ form.fecha_vencimiento(class="form-control") }}
+      </div>
+
+      <div class="col-md-4 mb-3 form-check mt-4">
+         {{ form.iva(class="form-check-input") }}
+         {{ form.iva.label(class="form-check-label") }}
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-md-6">
+         <button class="btn btn-primary">Guardar</button>
+      </div>
+      <div class="col-md-6">
+         <a href="{{ url_for('insumos.index') }}" class="btn btn-secondary">Cancelar</a>      
+      </div>
+   </div>
+
+   
+   
+
+</form>
 {% endblock %}

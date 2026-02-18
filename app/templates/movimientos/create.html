@@ -5,75 +5,100 @@
 
 {% block content %}
 
-<form action=method ="POST" action="{{ url_for('movimientos.guardar')}}">
-    <div class="container mt-4 content-box">
+<form method="POST" action="{{ url_for('movimientos.guardar') }}">
+<div class="container mt-4 content-box">
 
-        <!-- Tipo de movimiento -->
-        <div class="row mb-3">
-            <div class="col-3">
-                <label class="form-label">Tipo de movimiento</label>
-                <select class="form-select">
-                    <option selected>Seleccione</option>
-                    <option value="1">Entrada</option>
-                    <option value="2">Salida</option>
-                </select>
-            </div>
+    <div class="row g-4">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="col-md-6">
+
+            <h5 class="mb-3">Datos del Movimiento</h5>
+
+            <label class="form-label">Tipo de movimiento</label>
+            <select class="form-select mb-3">
+                <option selected>Seleccione</option>
+                <option value="1">Entrada</option>
+                <option value="2">Salida</option>
+            </select>
+
+            <label class="form-label">Fecha creacion</label>
+            <input type="date" class="form-control mb-3" id="txtfecha_creacion" name="txtfecha_creacion">
+
+            <hr>
+
+            <h5 class="mb-3">Datos del Cliente</h5>
+
+            <label class="form-label">Cédula Cliente</label>
+            <input type="text" class="form-control mb-3" id="txtcedula" name="txtcedula">
+
+            <label class="form-label">ID Cliente</label>
+            <input type="text" class="form-control mb-3" id="id_cliente" name="id_cliente" readonly>
+
+            <label class="form-label">Nombre Cliente</label>
+            <input type="text" class="form-control mb-3" id="txtnombre_cliente" name="txtnombre_cliente" readonly>
+
+            <label class="form-label">Dirección</label>
+            <input type="text" class="form-control mb-3" id="txtdireccion" name="txtdireccion">
+
+            <label class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="txttelefono" name="txttelefono">
         </div>
 
-        <!-- Datos del cliente -->
-        <div class="row mb-3">
-            <div class="col-4">
-                <label class="form-label">Cliente</label>
-                <div class="input-search">
-                    <input type="text" class="form-control" id="txtcliente">
-                    <button type="button" class="btn-search">🔍</button>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="col-md-6">
+
+            <h5 class="mb-3">Datos del Producto</h5>
+
+            <label class="form-label">Referencia</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="txtreferencia" name="txtreferencia">
+                <button class="btn btn-outline-secondary" type="button" id="btn_buscar_referencia" name="btn_buscar_referencia">🔍</button>
+            </div>
+
+             <label class="form-label">Id</label>
+            <input type="text" class="form-control mb-3" id="txtid_producto" name="txtid_producto">
+
+            <label class="form-label">Fecha vencimiento</label>
+            <input type="date" class="form-control mb-3" id="txtfecha_vencimiento" name="txtfecha_vencimiento">
+
+            <label class="form-label">Nombre referencia</label>
+            <input type="text" class="form-control mb-3" id="txtnombre_referencia" name="txtnombre_referencia">
+
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control mb-3" rows="3" id="txtdescripcion" name="txtdescripcion"></textarea>
+
+            <div class="row">
+                <div class="col-6">
+
+                    <label class="form-label">Cantidad</label>
+                    <div class="input-group mb3">
+                        <input type="number" class="form-control" id="txtcantidad" name="txtcantidad">
+                        <button class="btn btn-outline-secondary mt-2" type="button" id="btn_calcular">Calcular Total</button>
+                    </div>
+                    
                 </div>
-
-                <label class="form-label mt-2">Fecha</label>
-                <input type="date" class="form-control" id="txtfecha">
-            </div>
-
-            <div class="col-4">
-                <label class="form-label">Dirección</label>
-                <input type="text" class="form-control" id="txtdireccion">
-
-                <label class="form-label mt-2">Teléfono</label>
-                <input type="text" class="form-control" id="txtTelefono">
-            </div>
-        </div>
-
-        <!-- Referencia y descripción -->
-        <div class="row mb-3">
-            <div class="col-4">
-                <label class="form-label">Referencia</label>
-                <div class="input-search">
-                    <input type="text" class="form-control" id="txtinsumo">
-                    <button type="button" class="btn-search">🔍</button>
+                <div class="col-6">
+                    <label class="form-label">Valor Total</label>
+                    <input type="text" class="form-control" id="txtprecio" name="txtprecio" readonly>
                 </div>
-
-                <label class="form-label mt-3">Descripción</label>
-                <textarea class="form-control" id="txtobservaciones"
-                    rows="3"></textarea>
             </div>
 
-            <!-- Cantidad y valor -->
-            <div class="col-4">
-                <label class="form-label">Cantidad</label>
-                <input type="number" class="form-control" id="txtcantidad">
+            <hr>
 
-                <label class="form-label mt-3">Valor Total</label>
-                <input type="text" class="form-control" id="txtprecio">
+            <label class="form-label mt-3">Gran Total</label>
+            <input type="text" class="form-control mb-3" id="txtgran_total" name="txtgran_total" readonly>
 
-                <label class="form-label mt-3">Gran Total</label>
-                <input type="text" class="form-control" id="txtGranTotal">
+            <button type="submit" class="btn btn-primary w-100" id="btn_guardar" name="btn_guardar">
+                Guardar
+            </button>
 
-                <button type="submit" class="btn btn-primary mt-4 w-100">
-                    Guardar
-                </button>
-            </div>
         </div>
 
     </div>
+
+</div>
 </form>
 
 <script> 
@@ -85,7 +110,7 @@ document.getElementById("txtcedula").addEventListener("blur", function() {
     console.log("Buscando cédula:", cedula); 
 
     // Uso de comillas invertidas (backticks) para que funcione el ${cedula}
-    fetch(`/movimientos/buscar_por_cedula/${cedula}`)  
+    fetch(`movimientos/buscar_por_cedula/${cedula}`)  
         .then(response => {
             if (!response.ok) throw new Error("Error en la red");
             return response.json();
@@ -101,12 +126,67 @@ document.getElementById("txtcedula").addEventListener("blur", function() {
             // Asegúrate de que los IDs coincidan con tu HTML
             document.getElementById("txtnombre_cliente").value = data.nombre; 
             document.getElementById("id_cliente").value = data.id; 
+            document.getElementById("txtdireccion").value = data.direccion;
+            document.getElementById("txttelefono").value = data.celular;
+           ;
         }) 
         .catch(error => {
             console.error("Error completo:", error);
             alert("Error al procesar la solicitud");
         }); 
 });
+
+
+
+
+    document.getElementById("btn_buscar_referencia").addEventListener("click", function() {  
+    let insumo = document.getElementById("txtreferencia").value; 
+    if (!insumo) return;  
+    fetch(`/insumos/buscar_por_insumo/${insumo}`) 
+        .then(response => { 
+            if (!response.ok) throw new Error("Error en la red"); 
+            return response.json(); 
+
+        })  
+
+        .then(data => {  
+            if (data.error) {  
+                alert(data.error);  
+                document.getElementById("txtid_producto").value = "";  
+                document.getElementById("txtnombre_referencia").value = "";  
+                document.getElementById("txtprecio").value = "0";  
+                return;  
+
+            }
+            
+            document.getElementById("txtnombre_referencia").value = data.descripcion ?? "";  
+            document.getElementById("txtid_producto").value = data.id ?? "";  
+            document.getElementById("txtprecio").value = data.valor ?? "0";  
+             document.getElementById("txtfecha_creacion").value = data.fecha_creacion.split("T")[0];
+            document.getElementById("txtfecha_vencimiento").value = data.fecha_vencimiento
+
+        })  
+
+        .catch(error => { 
+            console.error("Error completo:", error); 
+            alert("Error al procesar la solicitud"); 
+
+        });  
+
+    });
+
+document.getElementById("btn_calcular").addEventListener("click", function() {
+        let cantidad, precio, total;
+     cantidad = document.getElementById("txtcantidad").value;
+     precio = document.getElementById("txtprecio").value;
+     total = cantidad * precio; 
+    document.getElementById("txtgran_total").value = total;
+
+});
+
+
+
+
 </script>
 
 {% endblock %}

@@ -1,45 +1,48 @@
 {% extends "base.html" %}
 
 {% block title %}Insumos{% endblock %}
-{% block page_title %}Dashboard{% endblock %}
+
+
 
 {% block content %}
 
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Insumos Medicos</h2>
+  <a href="{{ url_for('insumos.create')}}" class="btn btn-success">  ➕ Nuevo Insumo</a>
+</div>
 
-<div class="content">
 
-    <h1>Listado de Insumos</h1>
-    <table class="table">
+<table class="table table-bordered table-hover bg-white">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">codigo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">lote</th>
+      <th scope="col">invima</th>
+      <th scope="col">valor</th>
+      <th scope="col">iva</th>
+      <th scope="col">fecha_vencimiento</th>
+      <th scope="col">activo</th>
+      <th scope="col">fecha_creacion</th>
     </tr>
   </thead>
-  <tbody class="table-group-divider">
+
+  <tbody>
+    {% for insumo in insumos %}
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{{ insumo.codigo }}</td>
+      <td>{{ insumo.descripcion }}</td>
+      <td>{{ insumo.lote }}</td>
+      <td>{{ insumo.invima }}</td>
+      <td>{{ insumo.valor }}</td>
+      <td>{{ insumo.iva }}</td>
+      <td>{{ insumo.fecha_vencimiento }}</td>
+      <td>{{ 'Sí' if insumo.activo else 'No' }}</td>
+      <td>{{ insumo.fecha_creacion.strftime('%Y-%m-%d') }}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>Doe</td>
-      <td>@social</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
-</div>
 
 
 

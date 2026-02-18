@@ -1,11 +1,10 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% block title %}Editar Insumo{% endblock %} 
 
-{% block title %}edit{% endblock %}
-{% block page_title %}Dashboard{% endblock %}
-
-{% block content %}
-
-
-
-
-{% endblock %}
+{% block content %} 
+<h2>Editar Insumo</h2> 
+<form method="POST" class="card card-body bg-white shadow-sm"> 
+    {{ form.hidden_tag() }} 
+    {% include "insumos/crear.html" %} 
+</form> 
+{% endblock %} 
