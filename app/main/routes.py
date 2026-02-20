@@ -1,24 +1,20 @@
-from flask import render_template, request, redirect, url_for
-from .import main_bp
+from flask import render_template, redirect,url_for, session
+from app.main import main_bp
+from app. main.services import obtener_metricas_dashboard
+from app.utils.security import login_required
 
-@main_bp.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        usuario = request.form['email']
-        password = request.form['password']
-        
-        if usuario == 'admin@gmail.com' and password =='1234':
-            return redirect(url_for('main.dashboard'))
-        else:
-            return "usuario o contraseña incorrecta"
-        
-    return render_template('login.html')
 
-@main_bp.route('/')
-def home():
-    return render_template('login.html')
+@main_bp.route("/")
+def index():
+    if "user_id" not in session:
+        return redirect(url_for("auth.login"))
+    
+    return redirect(url_for("main.dashboard"))
 
-@main_bp.route('/dashboard')
+
+@main_bp.route("/dashboard")
+@login_required
 def dashboard():
-    return render_template('dashboard.html')     
+    metricas = obtener_metricas_dashboard()
+    return render_template("main/dashboard.html",metricas=metricas)
 

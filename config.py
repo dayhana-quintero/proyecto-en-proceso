@@ -4,7 +4,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     """Configuración base (común a todos los entornos)"""
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'lUIS159753CsiLosMatoEstudian+tes@')
+    SECRET_KEY = os.environ.get('SECRET_KEY', '1010082730')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Configuración general de sesión
     SESSION_PERMANENT = False

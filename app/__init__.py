@@ -24,7 +24,8 @@ def create_app(config_class="config.DevelopmentConfig"):
     app.register_blueprint(main_bp)
     
     
-   
+    from .auth import  auth_bp
+    app.register_blueprint(auth_bp)
     
     return app
 
