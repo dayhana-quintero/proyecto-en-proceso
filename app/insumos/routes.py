@@ -20,13 +20,16 @@ from app.insumos.services import (
         
 
 from app.insumos import insumos_bp
+from  app.utils.security import login_required
 
 @insumos_bp.route('/')
+  @login_required()
 def index():
     insumos = listar_insumos_activos()
     return render_template('insumos/index.html', insumos=insumos)
 
 @insumos_bp.route('/buscar_por_insumo/<referencia>')
+    @login_required()
 def buscar_por_insumo(referencia):
     
     insumo = service_buscar_por_insumo(referencia)
@@ -43,3 +46,8 @@ def buscar_por_insumo(referencia):
       'fecha_creacion': insumo.fecha_creacion.isoformat() if insumo.fecha_creacion else None
     })
 
+@insumos_bp.route("/")
+    @login_required()
+  
+def index():
+    return render_template("index.html")

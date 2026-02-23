@@ -23,18 +23,24 @@ from app.movimientos.services import (
     crear_movimiento,
     service_buscar_por_cedula
 )
+
+from  app.utils.security import login_required
+
 @movimientos_bp.route('/')
+    @login_required()
 def index():
     movimiento = listar_movimientos()
     return render_template('movimientos/index.html',movimiento = movimiento)
 
 
 @movimientos_bp.route('/create')
+    @login_required()
 def create():
     return render_template('movimientos/create.html')
 
 
 @movimientos_bp.route('movomientos /guardar', methods=['GET', 'POST'])
+    @login_required()
 def guardar():
     if request.method == 'POST':
         data = {
@@ -54,6 +60,7 @@ def guardar():
 
 
 @movimientos_bp.route('movimientos/buscar_por_cedula/<cedula>')
+    @login_required()
 def buscar_por_cedula(cedula):
     
     cliente = service_buscar_por_cedula(cedula)
@@ -69,12 +76,16 @@ def buscar_por_cedula(cedula):
     })
 
 @movimientos_bp.route('/edit')
+    @login_required()
 def edit():
     return render_template('movimientos/edit.html')
 
 @movimientos_bp.route('/delete')
+    @login_required()
 def delete():
     return render_template('movimientos/delete.html')
+
+
 
 
 
