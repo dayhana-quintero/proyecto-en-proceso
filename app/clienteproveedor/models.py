@@ -10,6 +10,9 @@ class ClienteProveedor(db.Model):
     direccion = db.Column(db.String(150), nullable=False)
     celular = db.Column(db.String(20), nullable=False)
     tipo = db.Column(db.String(1), nullable=False)
+
+    # relaciones
+        movimientos = db.relationship('Movimientos', backref='clienteproveedor', lazy=True)
     
     def __repr__(self): #es para cuando se buscar y este esta filtrado por codigo.
         return f"<ClienteProveedor {self.nombre}>" 

@@ -15,8 +15,11 @@ class Insumo(db.Model):
     activo = db.Column(db.Boolean, default=True) 
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow) 
 
-    def __repr__(self): #es para cuando se buscar y este esta filtrado por codigo.
-        return f"<Insumo {self.codigo}>" 
+    # relaciones
+        movimientos = db.relationship('Movimientos', backref='insumo', lazy=True)
 
-    def __repr__(self): #es para cuando se buscar y este esta filtrado por cliente.
-        return f"<Cliente {self.id_cliente}>" 
+
+    def __repr__(self): #es para cuando se buscar y este esta filtrado por codigo.
+        return f"<Insumo {self.codigo} - {self.descripcion}>" 
+
+    

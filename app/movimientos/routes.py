@@ -21,7 +21,8 @@ from app.movimientos.services import (
     
     listar_movimientos,
     crear_movimiento,
-    service_buscar_por_cedula
+    service_buscar_por_cedula,
+    guardar_movimiento
 )
 
 from  app.utils.security import login_required
@@ -39,7 +40,7 @@ def create():
     return render_template('movimientos/create.html')
 
 
-@movimientos_bp.route('movomientos /guardar', methods=['GET', 'POST'])
+@movimientos_bp.route('/movimientos/guardar', methods=['GET', 'POST'])
 @login_required
 def guardar():
     if request.method == 'POST':
