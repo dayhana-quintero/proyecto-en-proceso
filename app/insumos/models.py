@@ -16,7 +16,7 @@ class Insumo(db.Model):
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow) 
 
     # relaciones
-        movimientos = db.relationship('Movimientos', backref='insumo', lazy=True)
+    movimientos = db.relationship('Movimientos', backref='insumo', lazy=True)
 
 
     def __repr__(self): #es para cuando se buscar y este esta filtrado por codigo.

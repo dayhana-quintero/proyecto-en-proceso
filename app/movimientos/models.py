@@ -15,8 +15,8 @@ class Movimientos(db.Model):
 
 
     # relaciones
-    cliente =db.relationship('ClienteProveedor')
-    insumo = db.relationship('Insumo')
+   # clienteproveedor =db.relationship('ClienteProveedor')
+    #insumo = db.relationship('Insumo')
 
 
     

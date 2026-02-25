@@ -10,19 +10,17 @@ from flask import (
     
 )
 
-from app.movimientos.services import (
-    listar_movimientos, # asi se llama el metodo de services.py
-    crear_movimiento
-)
 
 from app.movimientos import movimientos_bp 
 
+# asi se llama el metodo de services.py
 from app.movimientos.services import (
     
     listar_movimientos,
     crear_movimiento,
     service_buscar_por_cedula,
-    guardar_movimiento
+    service_listar_insumos
+    
 )
 
 from  app.utils.security import login_required
@@ -37,7 +35,9 @@ def index():
 @movimientos_bp.route('/create')
 @login_required
 def create():
-    return render_template('movimientos/create.html')
+    listar_insumos = service_listar_insumos()
+
+    return render_template('movimientos/create.html', listar_insumos=listar_insumos)
 
 
 @movimientos_bp.route('/movimientos/guardar', methods=['GET', 'POST'])
@@ -45,13 +45,13 @@ def create():
 def guardar():
     if request.method == 'POST':
         data = {
-            'id_cliente': request.form.get('txtcliente', type=int),
-            'id_insumos': request.form.get('txtinsumo', type=int),
+            'id_cliente': request.form.get('id_cliente', type=int),
+            'id_insumo': request.form.get('txtid_producto', type=int),
             'precio': request.form.get('txtprecio', type=float),
             'cantidad': request.form.get('txtcantidad', type=int),
-            'fecha': request.form.get('txtfecha'),
+            'fecha_creacion': request.form.get('txtfecha_creacion'),
             'observaciones': request.form.get('txtobservaciones'),
-            'fecha_vencimiento': request.form.get('txtfechavencimiento')
+            'fecha_vencimiento': request.form.get('txtfecha_vencimiento')
         }
         
         crear_movimiento(data)
@@ -85,6 +85,11 @@ def edit():
 @login_required
 def delete():
     return render_template('movimientos/delete.html')
+
+
+
+
+
 
 
 
