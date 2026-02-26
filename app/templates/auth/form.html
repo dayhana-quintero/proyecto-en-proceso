@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Insumo{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {{form.hidden_tag()}}
+
+<div class="row">
+
+<div class="col-md-6">
+
+    {{form.username.label(class="form-label")}}
+    {{form.username(class="form-control")}}
+</div>
+
+<div class="col-md-6">
+    {{form.password.label(class="form-label")}}
+    {{form.password(class="form-control")}}
+
+</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        {{form.nombre.label(class="form-label")}}
+        {{form.nombre(class="form-control")}}
+    </div>
+
+    <div class="col-md-4">
+        {{form.rol.label(class="form-label")}}
+        {{form.rol(class="form-control")}}
+    </div>
+
+    <div class="col-md-4">
+        {{form.activo(class="form-check-input")}}
+        {{form.activo.label(class="form-check-label")}}
+    </div>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        {{form.submit(class="btn btn-primary")}}
+    </div>
+    <div class="col-md-6">
+        <input type = "reset">Cancelar
+    </div>
+</div>
+
+</form>
+
+
+
+
+
+{% endblock %}
