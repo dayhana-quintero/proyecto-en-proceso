@@ -1,13 +1,13 @@
 from flask import render_template, redirect, url_for, flash, session
 from app.auth import auth_bp
-from app.auth.forms import LoginForm
+from app.auth.forms import LoginForm, RegisterForm
 from app.auth.services import autenticar_usuario
 from werkzeug.security import generate_password_hash
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
-    
+    print("Formulario recibido:", form.data)  # Depuración: muestra los datos del formulario
     
     if form.validate_on_submit():
         usuario = autenticar_usuario(form.username.data, form.password.data)
@@ -33,12 +33,9 @@ def logout():
     flash("sesion finalizada", "info")
     return redirect(url_for("auth.login"))
 
-
-
-
-@auth_bp.route("/create", methods=["GET", "POST"])
-def create():
-    form = LoginForm()
+@auth_bp.route("/guardar", methods=["GET", "POST"])
+def guardar():
+    form = RegisterForm()
     if form.validate_on_submit():
         # Verificar si el username ya existe
         existing_user = Usuario.query.filter_by(username=form.username.data).first()
@@ -61,6 +58,12 @@ def create():
         flash("Usuario creado exitosamente", "success")
         return redirect(url_for("lista_usuarios"))  # Ajusta a tu vista de listado
 
-    return render_template("form.html", form=form)
+    return render_template("form.html")
+
+
+@auth_bp.route("/create")
+def create():
+    form = RegisterForm()
+    return render_template('form.html', form=form)
 
     
